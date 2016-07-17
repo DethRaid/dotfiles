@@ -1,46 +1,64 @@
 set nocompatible
 filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " plugin manager
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 " Creates a ) when you type (, a ' when you type ', a } when you type {, etc
-Bundle 'Raimondi/delimitMate'
+Plugin 'Raimondi/delimitMate'
 
 " Sublime-style searching
-Bundle 'kien/ctrlp.vim'
+Plugin 'kien/ctrlp.vim'
 
 "
-Bundle 'tikhomirov/vim-glsl'
+Plugin 'tikhomirov/vim-glsl'
 
 " File explorer
-Bundle 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdtree'
+
+" Linting
+Plugin 'scrooloose/syntastic'
 
 " Awesome status line
-Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Plugin 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
 
 " Use git commands from within Vim
-Bundle 'tpope/vim-fugitive'
+Plugin 'tpope/vim-fugitive'
 
 " Autocomplete and marginal syntax checking
-Bundle 'Valloric/YouCompleteMe'
+Plugin 'Valloric/YouCompleteMe'
 
 " Pretty color scheme
-Bundle 'altercation/vim-colors-solarized'
+Plugin 'altercation/vim-colors-solarized'
 
 " Python syntax folding
-Bundle 'tmhedberg/SimpylFold'
+Plugin 'tmhedberg/SimpylFold'
 
 " highlight changed lines
-Bundle 'airblade/vim-gitgutter'
+Plugin 'airblade/vim-gitgutter'
 
 " Lots of colorscheme options
-Bundle 'flazz/vim-colorschemes'
+Plugin 'flazz/vim-colorschemes'
 
 " Ruby static analysis
-Bundle 'ngmy/vim-rubocop'
+Plugin 'ngmy/vim-rubocop'
+
+" Javascript things
+Plugin 'pangloss/vim-javascript'
+
+" JSON things
+Plugin 'helino/vim-json'
+
+" fix alignment issues
+Plugin 'junegunn/vim-easy-align'
+
+" JS completion
+Plugin 'marijnh/tern_for_vim'
+
+call vundle#end()
+filetype plugin indent on
 
 set modelines=0
 set shiftwidth=4
@@ -64,6 +82,7 @@ set expandtab
 set mouse=ia
 set foldmethod=syntax
 set backspace=indent,eol,start
+set autoread
 
 set rnu
 
@@ -134,6 +153,22 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_add_preview_to_completeopt = 1
 let g:ycm_autoclose_preview_window_after_insertion = 1
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
 " other config
 map <leader>v :vert new ~/.vimrc
 map <leader>s !$sh
+
+" Remove all trailing whitespace by pressing F5
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+
+" neovim configuration
+let g:python3_host_prog = '/usr/local/bin/python3'
+let g:loaded_python_provider = 1
