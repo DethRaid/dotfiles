@@ -1,0 +1,13 @@
+git status
+
+read -q "REPLY?Do you want to commit these changes? (y/n)"
+
+
+if [[ $REPLY == 'n' ]] then
+    return 1
+fi
+
+git add -A :/
+git commit
+git pull && git push
+
