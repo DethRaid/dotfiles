@@ -4,7 +4,7 @@ set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " plugin manager
-Plugin 'gmarik/vundle'
+Plugin 'VundleVim/Vundle.vim'
 
 " Creates a ) when you type (, a ' when you type ', a } when you type {, etc
 Plugin 'Raimondi/delimitMate'
